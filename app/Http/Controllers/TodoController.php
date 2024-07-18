@@ -20,7 +20,7 @@ class TodoController extends Controller
             'todo' => 'required|string|min:3|max:500',
         ]);
         $todo = Todo::create($validatedRequest);
-        return response()->json(['todo' => $todo, 'message' => 'Todo created successfully']);
+        return response()->json(['todo' => $todo, 'message' => 'Todo created successfully' , 'request' => $request]);
     }
 
     function toggle($id) {
@@ -28,5 +28,19 @@ class TodoController extends Controller
         $todo->completed =!$todo->completed;
         $todo->save();
         return response()->json(['todo' => $todo ]);
+    }
+
+    function delete($id){
+        $todo = Todo::find($id);
+        $todo->delete();
+        return response()->json(['message' => 'Todo deleted successfully']);
+    }
+
+    function edit(Request $request){
+        $todo = Todo::find($request->id);
+        $todo->todo = $request->newTodo;
+        $todo->save();
+        return response()->json(['message' => 'Todo updated successfully']);
+
     }
 }

@@ -27,4 +27,6 @@ Route::middleware([
     Route::get('/todos' , [TodoController:: class , 'todos'])->name('get.todos');
     Route::post('/todo/store' , [TodoController:: class , 'store'])->name('store.todo');
     Route::put('/todo/{id}/toggle', [TodoController::class, 'toggle'])->name('toggle.todo');
+    Route::put('/todo/{id}/edit', [TodoController::class, 'edit'])->name('edit.todo');
+    Route::delete('/todo/{id}', [TodoController::class, 'delete'])->name('delete.todo');
 });
