@@ -17,6 +17,7 @@ function update(response) {
 
 
 
+
 async function submitTodo() {
     const response = await axios.post(route('store.todo'), form);
     update(response);
